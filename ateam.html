@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinity - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+      /* Custom CSS */
+      body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto Mono', monospace;
+        background-color: #f0f0f0;
+      }
+      header {
+        background-color: #923F2D;
+        padding: 1rem;
+      }
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+      }
+      nav a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      nav a:hover {
+        color: #000000;
+      }
+      main {
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.5s, transform 0.5s;
+        transform: translateX(100%);
+      }
+      main.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      footer {
+        background-color: #923F2D;
+        padding: 1rem;
+        text-align: center;
+        color: #ffffff;
+      }
+      .logo-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        transform: translateY(-50%);
+      }
+      .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        color: #ffffff;
+      }
+      .container {
+        text-align: center;
+      }
+      .photo {
+        display: inline-block;
+        margin: 10px;
+        position: relative;
+        overflow: hidden; /* Added overflow property */
+      }
+      .photo img {
+        width: 300px;
+        height: 400px;
+        object-fit: cover;
+        transition: filter 0.3s; /* Added transition property */
+      }
+      .photo:hover img {
+        filter: blur(5px); /* Added blur effect */
+      }
+      .photo .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #ffffff;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        text-align: center;
+        pointer-events: none;
+      }
+      .photo:hover .caption {
+        opacity: 1;
+      }
+      #ateam h2 {
+        text-align: center;
+      }
+      #ateam p {
+        text-align: center;
+        margin-top: 10px;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      // Custom JavaScript
+      $(document).ready(function() {
+        $('nav a').on('click', function(e) {
+          e.preventDefault();
+          var target = $(this).attr('href');
+          $('main').removeClass('show');
+          setTimeout(function() {
+            window.location.href = target;
+          }, 500);
+        });
+        setTimeout(function() {
+          $('main').addClass('show');
+        }, 500);
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <h1 class="logo">Trinity</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Dynmapa</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="ateam.html">Management</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="ateam">
+        <h2>Management</h2>
+        <p>Toto je banda kokotov čo sa vam stara o server</p>
+        
+        <div class="container">
+          <div class="photo">
+            <img src="photo1.png" alt="Photo 1">
+            <div class="caption">
+              <div>LloydSpektra</div>
+              <div>Engineer</div>
+              <div>"Starám sa o plynulý chod serveru"</div>
+            </div>
+          </div>
+          <div class="photo">
+            <img src="photo2.png" alt="Photo 2">
+            <div class="caption">
+              <div>Tovijahu</div>
+              <div>Kapitán</div>
+              <div>"Head of Marketing and Billboards</div>
+            </div>
+          </div>
+          <div class="photo">
+            <img src="photo3.png" alt="Photo 3">
+            <div class="caption">
+              <div>d1vert</div>
+              <div>Developer</div>
+              <div>"Vývojár webu a server Admin"</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2023 Trinity Global Inc. All rights reserved.</p>
+      <p>&copy; Made by d1vert</p>
+    </footer>
+  </body>
+</html>
