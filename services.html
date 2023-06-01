@@ -12,10 +12,23 @@
         padding: 0;
         font-family: 'Roboto Mono', monospace;
         background-color: #f0f0f0;
+        overflow: hidden;
       }
       header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         background-color: #923F2D;
         padding: 1rem;
+        text-align: center;
+        color: #ffffff;
+        z-index: 999;
+        transition: opacity 0.3s;
+        opacity: 0;
+      }
+      header:hover {
+        opacity: 1;
       }
       nav ul {
         list-style-type: none;
@@ -29,86 +42,56 @@
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s;
+        background-color: #923F2D;
+        padding: 0.5rem;
+        border-radius: 5px;
       }
       nav a:hover {
         color: #000000;
       }
       main {
-        padding: 2rem;
-        opacity: 0;
-        transition: opacity 0.5s, transform 0.5s;
-        transform: translateX(100%);
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
       }
-      main.show {
-        opacity: 1;
-        transform: translateX(0);
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
       }
       footer {
+        position: fixed;
+        left: 0;
+        width: 100%;
         background-color: #923F2D;
         padding: 1rem;
         text-align: center;
         color: #ffffff;
-      }
-      .logo-container {
-        position: relative;
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-        transform: translateY(-50%);
-      }
-      .logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 3rem;
-        font-weight: bold;
-        letter-spacing: 0.2rem;
-        text-transform: uppercase;
-        color: #ffffff;
-      }
-      .fade-slide-enter {
-        opacity: 0;
-        transform: translateX(100%);
-      }
-      .fade-slide-enter-active {
-        opacity: 1;
-        transform: translateX(0);
-        transition: opacity 0.5s, transform 0.5s;
-      }
-      .fade-slide-exit {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      .fade-slide-exit-active {
-        opacity: 0;
-        transform: translateX(-100%);
-        transition: opacity 0.5s, transform 0.5s;
+        bottom: 0;
+        transition: transform 0.3s;
+        z-index: 999;
       }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
       // Custom JavaScript
       $(document).ready(function() {
-        $('nav a').on('click', function(e) {
-          e.preventDefault();
-          var target = $(this).attr('href');
-          $('main').addClass('fade-slide-exit');
-          setTimeout(function() {
-            window.location.href = target;
-          }, 500);
+        $('header').on('mouseenter', function() {
+          $(this).addClass('show');
+        }).on('mouseleave', function() {
+          $(this).removeClass('show');
         });
-        setTimeout(function() {
-          $('main').addClass('show');
-        }, 500);
       });
     </script>
   </head>
   <body>
     <header>
-      <div class="logo-container">
-        <h1 class="logo">Trinity</h1>
-      </div>
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -119,15 +102,8 @@
         </ul>
       </nav>
     </header>
-    <main class="fade-slide-enter">
-      <section id="services">
-        <h2>Dynmapa</h2>
-        <p>asdasdasd</p>
-      </section>
+    <main>
+      <iframe src="http://parrot.hostify.cz:59842/" frameborder="0"></iframe>
     </main>
-    <footer>
-      <p>&copy; 2023 Trinity Global Inc. All rights reserved.</p>
-      <p>&copy; Made by d1vert</p>
-    </footer>
   </body>
 </html>
