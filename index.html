@@ -50,40 +50,100 @@
         color: #ffffff;
       }
       .logo-container {
-        position: relative;
-        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 200px;
-        margin: 0 auto;
-        transform: translateY(-50%);
       }
       .logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-size: 3rem;
         font-weight: bold;
         letter-spacing: 0.2rem;
-        text-transform: uppercase;
         color: #ffffff;
+        margin: 0;
       }
-      .fade-slide-enter {
+      .container {
+        text-align: center;
+      }
+      .photo {
+        display: inline-block;
+        margin: 10px;
+        position: relative;
+        overflow: hidden; /* Added overflow property */
+      }
+      .photo img {
+        width: 300px;
+        height: 400px;
+        object-fit: cover;
+        transition: filter 0.3s; /* Added transition property */
+      }
+      .photo:hover img {
+        filter: blur(5px); /* Added blur effect */
+      }
+      .photo .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #ffffff;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
         opacity: 0;
-        transform: translateX(100%);
+        transition: opacity 0.3s;
+        text-align: center;
+        pointer-events: none;
       }
-      .fade-slide-enter-active {
+      .photo:hover .caption {
         opacity: 1;
-        transform: translateX(0);
-        transition: opacity 0.5s, transform 0.5s;
       }
-      .fade-slide-exit {
-        opacity: 1;
-        transform: translateX(0);
+      #ateam h2 {
+        text-align: center;
       }
-      .fade-slide-exit-active {
-        opacity: 0;
-        transform: translateX(-100%);
-        transition: opacity 0.5s, transform 0.5s;
+      #ateam p {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .menu-container {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        z-index: 99;
+      }
+      /* Added styles for news section */
+      #news {
+        background-color: #ffffff;
+        padding: 2rem;
+        margin: 2rem auto;
+        max-width: 800px;
+        text-align: center;
+      }
+      .news-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .news-item {
+        background-color: #f0f0f0;
+        padding: 1rem;
+        margin: 1rem;
+        text-align: center;
+        width: 300px;
+      }
+      .news-item h3 {
+        margin-top: 0;
+      }
+      .news-item p {
+        margin-bottom: 1rem;
+      }
+      .news-item a {
+        text-decoration: none;
+        color: #923F2D;
+        font-weight: bold;
       }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -93,40 +153,64 @@
         $('nav a').on('click', function(e) {
           e.preventDefault();
           var target = $(this).attr('href');
-          $('main').addClass('fade-slide-exit');
-          setTimeout(function() {
-            window.location.href = target;
-          }, 500);
+          if (target === 'about.html') {
+            window.location.href = 'https://platby.hostify.cz/92640';
+          } else {
+            $('main').removeClass('show');
+            setTimeout(function() {
+              window.location.href = target;
+            }, 500);
+          }
         });
         setTimeout(function() {
           $('main').addClass('show');
         }, 500);
+        
+        // Add click event handler for "Read More" links
+        $('.news-item a').on('click', function(e) {
+          e.preventDefault();
+          var target = $(this).attr('href');
+          window.open(target, '_blank'); // Open link in a new tab
+        });
       });
     </script>
   </head>
   <body>
     <header>
       <div class="logo-container">
-        <h1 class="logo">Trinity</h1>
+        <img class="logo" src="C:\Users\magda\OneDrive\Počítač\Nový priečinok (2)\logo.png" alt="Logo">
       </div>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="about.html">VIP</a></li>
           <li><a href="services.html">Dynmapa</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">F.A.Q</a></li>
           <li><a href="ateam.html">Management</a></li>
         </ul>
       </nav>
     </header>
-    <main class="fade-slide-enter">
-      <section id="home">
-        <h2>Welcome to Trinity</h2>
-        <p>This is the home page content.</p>
+    <main>
+      <section id="home" style="text-align: center;">
+        <h2 style="margin-top: 0;">Vitajte na Trinity</h2>
+      </section>
+      <section id="news">
+        <h2>Novinky</h2>
+        <div class="news-container">
+          <div class="news-item">
+            <h3>Prvý server launch!!</h3>
+            <p>Dnes 4.6 je dňom ktorý sa zapíše do našej histórie...</p>
+            <a href="article1.html">Read More</a>
+          </div>
       </section>
     </main>
     <footer>
-      <p>&copy; 2023 Trinity Global Inc. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="https://instagram.com/mctrinity1?igshid=MzRlODBiNWFlZA==" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@simplesclothing?_t=8crDwmY7PS7&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+      </div>
+      <script src="https://kit.fontawesome.com/f0726da535.js" crossorigin="anonymous"></script>
+    <p>&copy; 2023 Trinity Global Inc. All rights reserved.</p>
       <p>&copy; Made by d1vert</p>
     </footer>
   </body>

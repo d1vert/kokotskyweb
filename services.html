@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trinity - Home</title>
+    <title>Trinity - Dynmapa</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
       /* Custom CSS */
@@ -89,13 +89,33 @@
         });
       });
     </script>
+      <script>
+        // Custom JavaScript
+        $(document).ready(function() {
+          $('nav a').on('click', function(e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+            if (target === 'about.html') {
+              window.location.href = 'https://platby.hostify.cz/92640';
+            } else {
+              $('main').removeClass('show');
+              setTimeout(function() {
+                window.location.href = target;
+              }, 500);
+            }
+          });
+          setTimeout(function() {
+            $('main').addClass('show');
+          }, 500);
+        });
+      </script>
   </head>
   <body>
     <header>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Domov</a></li>
+          <li><a href="about.html">VIP</a></li>
           <li><a href="services.html">Dynmapa</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="ateam.html">Management</a></li>
